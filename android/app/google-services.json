@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "952589533851",
+    "project_id": "fic12-3deb6",
+    "storage_bucket": "fic12-3deb6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:952589533851:android:377cd553300d425654fc3e",
+        "android_client_info": {
+          "package_name": "com.example.flutter_onlineshop_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvjix0Ty8YQuss42O-36NXafmFHcxwYAs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
