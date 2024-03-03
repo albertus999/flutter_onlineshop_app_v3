@@ -28,7 +28,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
           origin: '5779',
           destination: '2103',
           weight: 1000,
-          courier: 'jne',
+          courier: 'sicepat',
         ));
     super.initState();
   }

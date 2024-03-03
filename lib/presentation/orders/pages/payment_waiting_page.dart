@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_onlineshop_app/data/models/responses/order_response_model.dart';
 import 'package:flutter_onlineshop_app/presentation/home/bloc/checkout/checkout_bloc.dart';
 import 'package:flutter_onlineshop_app/presentation/orders/pages/order_detail_page.dart';
 import 'package:go_router/go_router.dart';
@@ -109,15 +110,15 @@ class _PaymentWaitingPageState extends State<PaymentWaitingPage> {
                     child: Button.outlined(
                       onPressed: () {
                         context.pushNamed(
-                            RouteConstants.orderDetail,
-                            pathParameters: {'orderId': '${widget.orderId}'},
-                            // builder: (context, state) => const OrderDetailPage(),
-                          );
+                          RouteConstants.orderDetail,
+                          pathParameters: {'orderId': '${widget.orderId}'},
+                          // builder: (context, state) => const OrderDetailPage(),
+                        );
 
                         context.pushNamed(
-                            RouteConstants.trackingOrder,
-                            pathParameters: {'orderId': '${widget.orderId}'},
-);
+                          RouteConstants.trackingOrder,
+                          pathParameters: {'orderId': '${widget.orderId}'},
+                        );
                       },
                       label: 'Lacak Pesanan',
                     ),
@@ -257,22 +258,34 @@ class _PaymentWaitingPageState extends State<PaymentWaitingPage> {
                     ),
                   ],
                 ),
-                Button.outlined(
-                  textColor: AppColors.primary,
-                  width: 125.0,
-                  onPressed: () {
-                    Clipboard.setData(const ClipboardData(text: 'test dong'))
-                        .then((_) {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text('Copied to clipboard'),
-                        duration: Duration(seconds: 1),
-                        backgroundColor: AppColors.primary,
-                      ));
-                    });
-                  },
-                  label: 'Copy',
-                  icon: Assets.icons.copy.svg(),
-                ),
+                BlocBuilder<OrderBloc, OrderState>(
+                  builder: (context, state) {
+                    return state.maybeWhen(
+                      orElse: () {
+                        return const SizedBox();
+                          },
+                      loaded: (orderResponseModel){
+                        return Button.outlined(
+                          textColor: AppColors.primary,
+                          width: 125.0,
+                          onPressed: () {
+                            Clipboard.setData(
+                              ClipboardData(text: orderResponseModel.order!.paymentVaNumber!))
+                                .then((_) {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text('Copied to clipboard'),
+                                duration: Duration(seconds: 1),
+                                backgroundColor: AppColors.primary,
+                              ));
+                            });
+                          },
+                          label: 'Copy',
+                          icon: Assets.icons.copy.svg(),
+                        );
+                
+                  });
+                  })
               ],
             ),
             const SpaceHeight(14.0),

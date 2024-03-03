@@ -147,17 +147,17 @@ class PaymentDetailPage extends StatelessWidget {
                 const SpaceHeight(50.0),
                 Row(
                   children: [
-                    Flexible(
-                      child: Button.outlined(
-                        onPressed: () {
-                          context.goNamed(
-                            RouteConstants.trackingOrder,
-                            pathParameters: PathParameters().toMap(),
-                          );
-                        },
-                        label: 'Lacak Pesanan',
-                      ),
-                    ),
+                    // Flexible(
+                    //   child: Button.outlined(
+                    //     onPressed: () {
+                    //       context.goNamed(
+                    //         RouteConstants.orderDetail,
+                    //         pathParameters: PathParameters().toMap(),
+                    //       );
+                    //     },
+                    //     label: 'Lacak Pesanan',
+                    //   ),
+                    // ),
                     const SpaceWidth(20.0),
                     Flexible(
                       child: Button.filled(
